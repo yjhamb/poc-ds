@@ -1,0 +1,8 @@
+# Eclipse
+.project
+.pydevproject
+
+pub/
+
+__pycache__
+.DS_Store
