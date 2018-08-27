@@ -30,16 +30,30 @@ public class LRUCache<K, V> {
 	cacheMap.remove(key);
     }
 
-    public void remove(K key) {
+    public V remove(K key) {
 	int index = cacheList.indexOf(key);
-	cacheList.remove(index);
-	cacheMap.remove(key);
+	V value = null;
+	if (index >= 0) {
+	    value = get(key);
+	    cacheList.remove(index);
+	    cacheMap.remove(key);
+	}
+	return value;
     }
 
     public V get(K key) {
 	int index = cacheList.indexOf(key);
-	cacheList.remove(index);
-	cacheList.addLast(key);
+	if (index >= 0) {
+	    cacheList.remove(index);
+	    cacheList.addLast(key);
+	}
 	return cacheMap.get(key);
+    }
+
+    public void list() {
+	for (K key : cacheMap.keySet()) {
+	    V value = cacheMap.get(key);
+	    System.out.println("Key: " + key + ", Value: " + value);
+	}
     }
 }

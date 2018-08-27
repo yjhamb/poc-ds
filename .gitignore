@@ -3,6 +3,7 @@
 .classpath
 .settings
 pub/
+target/
 
 __pycache__
 .DS_Store
