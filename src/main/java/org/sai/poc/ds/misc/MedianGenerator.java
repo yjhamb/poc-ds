@@ -1,11 +1,11 @@
-package com.apple.ist.poc.ds;
+package org.sai.poc.ds.misc;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 
 public class MedianGenerator {
 
@@ -38,7 +38,7 @@ public class MedianGenerator {
 		} catch (Exception e) {
 			System.out.println("Error while computing median");
 		} finally {
-			IOUtils.closeQuietly(br);
+			//IOUtils.closeQuietly(br);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.apple.ist.poc.ds;
+package org.sai.poc.ds.list;
 
 public class LIS {
 

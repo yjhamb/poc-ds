@@ -1,4 +1,4 @@
-package com.apple.ist.poc.ds;
+package org.sai.poc.ds.sort;
 
 public class Quicksort {
 
