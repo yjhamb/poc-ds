@@ -1,6 +1,6 @@
 package org.sai.poc.ds.list;
 
-public class SuperLinkedList<T> {
+public class ReverseList<T> {
 
 	Node<T> head;
 
@@ -76,7 +76,7 @@ public class SuperLinkedList<T> {
 	}
 
 	public static void main(String[] args) {
-		SuperLinkedList<Integer> sll = new SuperLinkedList<>();
+		ReverseList<Integer> sll = new ReverseList<>();
 		for (int i = 1; i <= 10; i++) {
 			sll.add(i * 10);
 		}

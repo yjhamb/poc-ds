@@ -21,6 +21,7 @@ public class SingleLinkedList<T> {
 	}
 
 	private Node head;
+	private Node tail;
 
 	public Node getHead() {
 		return head;
@@ -30,73 +31,70 @@ public class SingleLinkedList<T> {
 		this.head = head;
 	}
 
-	public void add(T data) {
+	public void addFront(T data) {
 		Node node = new Node(data);
 		if (head != null) {
 			node.next = head;
+			tail = head;
 			head = node;
 		} else {
 			head = node;
+			tail = node;
+		}
+	}
+
+	public void addEnd(T data, boolean cycle) {
+		Node node = new Node(data);
+		if (tail != null) {
+			tail.next = node;
+			tail = node;
+		} else {
+			head = node;
+			tail = node;
+		}
+		if (cycle) {
+			tail.next = head;
 		}
 	}
 
 	public void print() {
 		Node node = head;
-		while (node != null) {
+		while (node != tail) {
 			System.out.println(node.getData());
 			node = node.getNext();
 		}
 	}
 
-	public void printReverse(Node node) {
-		if (node.getNext() != null) {
-			printReverse(node.getNext());
+	private boolean isCyclic() {
+		Node forward = head;
+		Node trail = head;
+		do  {
+			// take 2 steps
+			for (int i = 0; i < 2; i++) {
+				if (forward != null) {
+					forward = forward.getNext();
+				}
+			}
+			if (trail != null) {
+				trail = trail.getNext();
+			}
+		} while (forward != trail);
+		if (forward == null) {
+			return false;
+		} else {
+			return true;
 		}
-		System.out.println(node.getData());
-	}
-
-	public void reverse() {
-		Node current = head;
-		Node previous = null;
-		Node forward = null;
-		while (current != null) {
-			forward = current.next;
-			current.next = previous;
-			previous = current;
-			current = forward;
-		}
-		head = previous;
-	}
-
-	public Node reverseByGroup(Node node, int n) {
-		Node current = node;
-		Node previous = null;
-		Node forward = null;
-		int size = 0;
-		while (current != null && size < n) {
-			forward = current.next;
-			current.next = previous;
-			previous = current;
-			current = forward;
-			size++;
-		}
-		if (forward != null) {
-			node.next = reverseByGroup(forward, n);
-		}
-		return previous;
 	}
 
 	public static void main(String[] args) {
 		SingleLinkedList<Integer> llist = new SingleLinkedList<>();
-		llist.add(1);
-		llist.add(2);
-		llist.add(3);
-		llist.add(4);
-		llist.add(5);
-		llist.print();
-		// llist.printReverse(llist.getHead());
-		llist.setHead(llist.reverseByGroup(llist.getHead(), 2));
-		llist.print();
+		llist.addEnd(1, false);
+		llist.addEnd(2, false);
+		llist.addEnd(3, false);
+		llist.addEnd(4, false);
+		llist.addEnd(5, true);
+		System.out.println(llist.isCyclic());
+		
 	}
 
 }
